@@ -1,0 +1,42 @@
+{
+  "name": "LineOfBalance",
+  "version": "1.0.0",
+  "description": "A Visibility Tool for Tracking Detailed Parts Status at Suppliers",
+  "author": "James Lee <https://github.com/blastooo>",
+  "license": "ISC",
+  "homepage": "https://github.com/blastooo/LOB#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blastooo/LOB.git"
+  },
+  "bugs": {
+    "url": "https://github.com/blastooo/LOB/issues",
+    "email": "james.k.lee4@gmail.com"
+  },
+  "main": "index.js",
+  "scripts": {
+    "server-dev": "nodemon server/index.js",
+    "react-dev": "webpack -d --watch",
+    "dev": "concurrently --kill-others \"npm run react-dev\" \"npm run server-dev\"",
+    "start": "node server/index.js"
+  },
+  "devDependencies": {
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.3.2",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-react": "^6.23.0",
+    "webpack": "^2.2.1",
+    "concurrently": "^4.0.1"
+  },
+  "dependencies": {
+    "express": "^4.16.3",
+    "body-parser": "^1.17.2",
+    "nodemon": "^1.18.4",
+    "dotenv": "^6.0.0",
+    "mysql": "^2.16.0",
+    "sequelize": "^4.41.2",
+    "jquery": "^3.3.1",
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0"
+  }
+}
