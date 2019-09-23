@@ -18,6 +18,14 @@ const getContracts = (supplierId, callback) => {
   });
 };
 
+const getInventory = (partNumber, callback) => {
+  const sql = 'SELECT * FROM inventory WHERE partNumber = ?';
+
+  db.connection.query(sql, partNumber, function (err, result) {
+    callback(err, result);
+  });
+};
+
 // Functions to add records
 const addSupplier = (supplierData, callback) => {
   const sql = 'INSERT INTO suppliers (name, supplierCode, phone, email, website, address1, address2, city, state, zip) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
@@ -36,9 +44,19 @@ const addContract = (supplierId, contractData, callback) => {
   });
 };
 
+const addInventory = (inventoryData, callback) => {
+  const sql = 'INSERT INTO inventory (partNumber, qty) VALUES (?, ?)';
+
+  db.connection.query(sql, [inventoryData.partNumber, inventoryData.qty], function (err, result) {
+    callback(err, result);
+  });
+};
+
 module.exports = {
   getSupplier: getSupplier,
   getContracts: getContracts,
+  getInventory: getInventory,
   addSupplier: addSupplier,
-  addContract: addContract
+  addContract: addContract,
+  addInventory: addInventory
 };

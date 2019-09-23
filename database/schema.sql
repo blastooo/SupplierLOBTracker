@@ -37,3 +37,12 @@ CREATE TABLE contracts (
   FOREIGN KEY (supplierId) REFERENCES
   suppliers(id)
 )ENGINE=INNODB;
+
+DROP TABLE IF EXISTS `inventory`;
+
+CREATE TABLE inventory (
+  id int NOT NULL AUTO_INCREMENT,
+  partNumber varchar(50) NOT NULL,
+  qty int NOT NULL,
+  PRIMARY KEY (id)
+)ENGINE=INNODB;

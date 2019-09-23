@@ -39,7 +39,7 @@ for (let i = 0; i < supplierCount; i++) {
   );
 };
 
-// Create mock contracts data
+// Create mock Contracts data
 const contracts = [];
 
 const programs = ['T', 'U', 'W', 'X'];
@@ -83,5 +83,18 @@ for (let i = 0; i < contractCount; i++) {
   );
 };
 
+// Create mock Inventory data
+const inventory = [];
+
+for (let i = 0; i < contracts.length; i++) {
+  inventory.push(
+    {
+      partNumber: contracts[i].partNumber,
+      qty: Math.floor(Math.random() * 50)
+    }
+  );
+};
+
 module.exports.suppliers = suppliers;
 module.exports.contracts = contracts;
+module.exports.inventory = inventory;

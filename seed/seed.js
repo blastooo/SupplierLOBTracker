@@ -22,6 +22,12 @@ const seedDb = () => {
     });
   };
 
+  for (part of mockData.inventory) {
+    dbControllers.addInventory(part, (err, result) => {
+      (err) ? console.log('Error', err) : console.log('Inventory saved to database', result);
+    });
+  };
+
   db.connection.end();
 };
 

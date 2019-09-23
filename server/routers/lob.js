@@ -10,7 +10,7 @@ if (process.env.DATABASE === 'mongo') {
   db = require('../../database/controllers.js');
 } else {
   console.log('No database defined in .env file');
-};
+}
 
 // GET request to retrieve Supplier info
 router.route('/supplier/:id')
@@ -23,8 +23,8 @@ router.route('/supplier/:id')
       } else {
         console.log('Supplier returned', result);
         res.send(result);
-      };
-    })
+      }
+    });
   });
 
 // GET request to retrieve all Contracts for a Supplier
@@ -33,12 +33,23 @@ router.route('/supplier/:id/contracts')
     const supplierId = req.params.id;
 
     db.getContracts(supplierId, (err, result) => {
-      if (err) {
-        console.log('Error', err);
-      } else {
-        console.log('Contracts returned', result);
-        res.send(result);
-      };
+      let promises = result.map(contract => {
+        return new Promise((resolve, reject) => {
+          db.getInventory(contract.partNumber, function(err, result) {
+            if (err) {
+              console.log('Error', err);
+            } else {
+              contract.inventory = result[0].qty;
+              resolve(contract);
+            }
+          })
+        });
+      });
+
+      Promise.all(promises).then(contracts => {
+        console.log('t', contracts);
+        res.send(contracts);
+      })
     })
   });
 
