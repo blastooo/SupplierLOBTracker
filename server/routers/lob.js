@@ -60,7 +60,21 @@ router.route('/supplier/:id/contracts')
           });
         });
         Promise.all(promises).then(contracts => {
-          res.send(contracts);
+          let promises = contracts.map(contract => {
+            return new Promise((resolve, reject) => {
+              db.getDemand(contract.partNumber, function(err, result) {
+                if (err) {
+                  console.log('Error', err);
+                } else {
+                  contract.demand = result;
+                  resolve(contract);
+                }
+              })
+            });
+          });
+          Promise.all(promises).then(contracts => {
+            res.send(contracts);
+          })
         })
       })
     })

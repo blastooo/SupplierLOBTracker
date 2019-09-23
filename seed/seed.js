@@ -34,6 +34,12 @@ const seedDb = () => {
     });
   };
 
+  for (part of mockData.demand) {
+    dbControllers.addDemand(part, (err, result) => {
+      (err) ? console.log('Error', err) : console.log('Demand saved to database', result);
+    });
+  };
+
   db.connection.end();
 };
 

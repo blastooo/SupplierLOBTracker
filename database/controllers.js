@@ -34,6 +34,14 @@ const getWIP = (partNumber, callback) => {
   });
 };
 
+const getDemand = (partNumber, callback) => {
+  const sql = 'SELECT * FROM demand WHERE partNumber = ?';
+
+  db.connection.query(sql, partNumber, function (err, result) {
+    callback(err, result);
+  });
+};
+
 // Functions to add records
 const addSupplier = (supplierData, callback) => {
   const sql = 'INSERT INTO suppliers (name, supplierCode, phone, email, website, address1, address2, city, state, zip) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
@@ -68,13 +76,23 @@ const addWIP = (wipData, callback) => {
   });
 };
 
+const addDemand = (demandData, callback) => {
+  const sql = 'INSERT INTO demand (partNumber, lineNumber, qty) VALUES (?, ?, ?)';
+
+  db.connection.query(sql, [demandData.partNumber, demandData.lineNumber, demandData.qty], function (err, result) {
+    callback(err, result);
+  });
+};
+
 module.exports = {
   getSupplier: getSupplier,
   getContracts: getContracts,
   getInventory: getInventory,
   getWIP: getWIP,
+  getDemand: getDemand,
   addSupplier: addSupplier,
   addContract: addContract,
   addInventory: addInventory,
-  addWIP: addWIP
+  addWIP: addWIP,
+  addDemand: addDemand
 };

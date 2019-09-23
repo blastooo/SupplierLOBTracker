@@ -2,7 +2,7 @@ const faker = require('faker/locale/en_US');
 
 // Options for mock data counts
 const supplierCount = 0;
-const contractCount = 50;
+const contractCount = 250;
 
 // Create mock Suppliers data
 const suppliers = [];
@@ -19,7 +19,67 @@ suppliers.push(
     address2: null,
     city: 'Kent',
     state: 'WA',
-    zip: '98032',
+    zip: '98032'
+  }
+);
+
+suppliers.push(
+  {
+    name: 'Superstar Manufacturing',
+    supplierCode: Math.floor(Math.random() * 1000000) + 1,
+    phone: faker.phone.phoneNumber(),
+    email: 'contactus@superstarmanufacturing.com',
+    website: 'http://www.superstarmanufacturing.com',
+    address1: faker.address.streetAddress(),
+    address2: faker.address.secondaryAddress(),
+    city: faker.address.city(),
+    state: faker.address.state(),
+    zip: faker.address.zipCode()
+  }
+);
+
+suppliers.push(
+  {
+    name: 'Spaceships R Us',
+    supplierCode: Math.floor(Math.random() * 1000000) + 1,
+    phone: faker.phone.phoneNumber(),
+    email: 'contactus@spaceshipsrus.com',
+    website: 'http://www.spaceshipsrus.com',
+    address1: faker.address.streetAddress(),
+    address2: faker.address.secondaryAddress(),
+    city: faker.address.city(),
+    state: faker.address.state(),
+    zip: faker.address.zipCode()
+  }
+);
+
+suppliers.push(
+  {
+    name: 'SpaceTech Engineering',
+    supplierCode: Math.floor(Math.random() * 1000000) + 1,
+    phone: faker.phone.phoneNumber(),
+    email: 'contactus@spacetechengineering.com',
+    website: 'http://www.spacetechengineering.com',
+    address1: faker.address.streetAddress(),
+    address2: faker.address.secondaryAddress(),
+    city: faker.address.city(),
+    state: faker.address.state(),
+    zip: faker.address.zipCode()
+  }
+);
+
+suppliers.push(
+  {
+    name: 'World Space Corp',
+    supplierCode: Math.floor(Math.random() * 1000000) + 1,
+    phone: faker.phone.phoneNumber(),
+    email: 'contactus@worldspacecorp.com',
+    website: 'http://www.worldspacecorp.com',
+    address1: faker.address.streetAddress(),
+    address2: faker.address.secondaryAddress(),
+    city: faker.address.city(),
+    state: faker.address.state(),
+    zip: faker.address.zipCode()
   }
 );
 
@@ -30,14 +90,15 @@ for (let i = 0; i < supplierCount; i++) {
       supplierCode: Math.floor(Math.random() * 1000000) + 1,
       phone: faker.phone.phoneNumber(),
       email: faker.internet.email(),
+      website: faker.internet.url(),
       address1: faker.address.streetAddress(),
       address2: faker.address.secondaryAddress(),
       city: faker.address.city(),
       state: faker.address.state(),
-      zip: faker.address.zipCode(),
+      zip: faker.address.zipCode()
     }
   );
-};
+}
 
 // Create mock Contracts data
 const contracts = [];
@@ -81,7 +142,7 @@ for (let i = 0; i < contractCount; i++) {
       contractDate: faker.date.past()
     }
   );
-};
+}
 
 // Create mock Inventory data
 const inventory = [];
@@ -93,7 +154,7 @@ for (let i = 0; i < contracts.length; i++) {
       qty: Math.floor(Math.random() * 50)
     }
   );
-};
+}
 
 // Create mock WIP data
 const wip = [];
@@ -105,9 +166,25 @@ for (let i = 0; i < contracts.length; i++) {
       qty: Math.floor(Math.random() * 50)
     }
   );
-};
+}
+
+// Create mock Demand data
+const demand = [];
+
+for (let i = 0; i < contracts.length; i++) {
+  for (let j = 300; j <= 330; j++) {
+    demand.push(
+      {
+        partNumber: contracts[i].partNumber,
+        lineNumber: j,
+        qty: Math.floor(Math.random() * 5) + 1
+      }
+    );
+  }
+}
 
 module.exports.suppliers = suppliers;
 module.exports.contracts = contracts;
 module.exports.inventory = inventory;
 module.exports.wip = wip;
+module.exports.demand = demand;

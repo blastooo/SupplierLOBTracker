@@ -19,7 +19,7 @@ CREATE TABLE suppliers (
   website varchar(200) NOT NULL,
   address1 varchar(50) NOT NULL,
   address2 varchar(50),
-  city varchar(20) NOT NULL,
+  city varchar(50) NOT NULL,
   state varchar(20) NOT NULL,
   zip varchar(15) NOT NULL,
   PRIMARY KEY (id)
@@ -52,6 +52,16 @@ DROP TABLE IF EXISTS `wip`;
 CREATE TABLE wip (
   id int NOT NULL AUTO_INCREMENT,
   partNumber varchar(50) NOT NULL,
+  qty int NOT NULL,
+  PRIMARY KEY (id)
+)ENGINE=INNODB;
+
+DROP TABLE IF EXISTS `demand`;
+
+CREATE TABLE demand (
+  id int NOT NULL AUTO_INCREMENT,
+  partNumber varchar(50) NOT NULL,
+  lineNumber int NOT NULL,
   qty int NOT NULL,
   PRIMARY KEY (id)
 )ENGINE=INNODB;
