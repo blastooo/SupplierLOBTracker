@@ -47,8 +47,21 @@ router.route('/supplier/:id/contracts')
       });
 
       Promise.all(promises).then(contracts => {
-        console.log('t', contracts);
-        res.send(contracts);
+        let promises = contracts.map(contract => {
+          return new Promise((resolve, reject) => {
+            db.getWIP(contract.partNumber, function(err, result) {
+              if (err) {
+                console.log('Error', err);
+              } else {
+                contract.WIP = result[0].qty;
+                resolve(contract);
+              }
+            })
+          });
+        });
+        Promise.all(promises).then(contracts => {
+          res.send(contracts);
+        })
       })
     })
   });

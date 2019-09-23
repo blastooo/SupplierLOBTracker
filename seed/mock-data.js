@@ -95,6 +95,19 @@ for (let i = 0; i < contracts.length; i++) {
   );
 };
 
+// Create mock WIP data
+const wip = [];
+
+for (let i = 0; i < contracts.length; i++) {
+  wip.push(
+    {
+      partNumber: contracts[i].partNumber,
+      qty: Math.floor(Math.random() * 50)
+    }
+  );
+};
+
 module.exports.suppliers = suppliers;
 module.exports.contracts = contracts;
 module.exports.inventory = inventory;
+module.exports.wip = wip;

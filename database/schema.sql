@@ -46,3 +46,12 @@ CREATE TABLE inventory (
   qty int NOT NULL,
   PRIMARY KEY (id)
 )ENGINE=INNODB;
+
+DROP TABLE IF EXISTS `wip`;
+
+CREATE TABLE wip (
+  id int NOT NULL AUTO_INCREMENT,
+  partNumber varchar(50) NOT NULL,
+  qty int NOT NULL,
+  PRIMARY KEY (id)
+)ENGINE=INNODB;

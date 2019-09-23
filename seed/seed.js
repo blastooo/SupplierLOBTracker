@@ -28,6 +28,12 @@ const seedDb = () => {
     });
   };
 
+  for (part of mockData.wip) {
+    dbControllers.addWIP(part, (err, result) => {
+      (err) ? console.log('Error', err) : console.log('WIP saved to database', result);
+    });
+  };
+
   db.connection.end();
 };
 
