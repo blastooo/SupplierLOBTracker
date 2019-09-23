@@ -13,7 +13,7 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use('/', lobRouter);
+app.use('/lob', lobRouter);
 
 const port = 3000
 app.listen(port, () => console.log('LOB Service listening on port', port));
