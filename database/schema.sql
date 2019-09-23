@@ -18,9 +18,22 @@ CREATE TABLE suppliers (
   email varchar(50) NOT NULL,
   website varchar(200) NOT NULL,
   address1 varchar(50) NOT NULL,
-  address2 varchar(50) NOT NULL,
+  address2 varchar(50),
   city varchar(20) NOT NULL,
   state varchar(20) NOT NULL,
   zip varchar(15) NOT NULL,
   PRIMARY KEY (id)
+)ENGINE=INNODB;
+
+DROP TABLE IF EXISTS `contracts`;
+
+CREATE TABLE contracts (
+  id int NOT NULL AUTO_INCREMENT,
+  supplierId int NOT NULL,
+  partNumber varchar(50) NOT NULL,
+  nomenclature varchar(250) NOT NULL,
+  contractDate datetime NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (supplierId) REFERENCES
+  suppliers(id)
 )ENGINE=INNODB;

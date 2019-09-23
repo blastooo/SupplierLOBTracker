@@ -12,7 +12,7 @@ if (process.env.DATABASE === 'mongo') {
   console.log('No database defined in .env file');
 };
 
-// Get request to retrieve supplier info
+// GET request to retrieve Supplier info
 router.route('/supplier/:id')
   .get((req, res) => {
     const supplierId = req.params.id;
@@ -22,6 +22,21 @@ router.route('/supplier/:id')
         console.log('Error', err);
       } else {
         console.log('Supplier returned', result);
+        res.send(result);
+      };
+    })
+  });
+
+// GET request to retrieve all Contracts for a Supplier
+router.route('/supplier/:id/contracts')
+  .get((req, res) => {
+    const supplierId = req.params.id;
+
+    db.getContracts(supplierId, (err, result) => {
+      if (err) {
+        console.log('Error', err);
+      } else {
+        console.log('Contracts returned', result);
         res.send(result);
       };
     })
