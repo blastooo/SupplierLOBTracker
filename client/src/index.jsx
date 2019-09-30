@@ -42,7 +42,9 @@ class App extends React.Component {
         <img src="https://i.imgur.com/k9GyXLC.gif" />
       :
         <div>
+
           <h1> Supplier Line of Balance </h1>
+
           <section>
             <label> Choose Supplier: </label>
             <select onChange={this.changeSupplier.bind(this)} >
@@ -52,6 +54,9 @@ class App extends React.Component {
               )}
             </select>
           </section>
+
+          <SupplierHeader currentSupplier={this.state.supplierList[this.state.currentSupplierId - 1]} />
+
         </div>
     );
   };
