@@ -4,6 +4,7 @@ import $ from 'jquery';
 
 import MainHeader from './components/MainHeader.jsx';
 import SupplierHeader from './components/SupplierHeader.jsx';
+import LOB from './components/LOB.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -29,13 +30,23 @@ class App extends React.Component {
     });
   };
 
+  // GET request to retrieve Supplier Contracts data
+  getContracts() {
+    $.get('/lob/supplier/' + this.state.supplierId + '/contracts', (contractsData) => {
+      this.setState({
+        contracts: contractsData
+      });
+    });
+  };
+
   // Handle event when user selects a Supplier from the drop down list
-  changeSupplier(event) {
+  async changeSupplier(event) {
     event.preventDefault();
-    this.setState({
+    await this.setState({
       supplierId: event.target.value,
       supplierInfo: this.state.supplierList[event.target.value - 1]
     });
+    this.getContracts();
   };
 
   render() {
@@ -49,6 +60,8 @@ class App extends React.Component {
           <MainHeader supplierList={this.state.supplierList} changeSupplier={this.changeSupplier.bind(this)} />
 
           <SupplierHeader supplierInfo={this.state.supplierInfo} />
+
+          <LOB contracts={this.state.contracts} />
 
         </div>
     );
