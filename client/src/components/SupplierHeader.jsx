@@ -1,17 +1,17 @@
 import React from 'react';
 
-const SupplierHeader = ({currentSupplier}) =>
-  !!currentSupplier &&
+const SupplierHeader = ({supplierInfo}) =>
+  !!supplierInfo &&
     <div>
-      <h3> {currentSupplier.name} </h3>
-      <div> Supplier Code: {currentSupplier.supplierCode} </div>
-      <div> Phone: {currentSupplier.phone} </div>
-      <div> Email: {currentSupplier.email} </div>
-      <div> Website: {currentSupplier.website} </div>
+      <h3> {supplierInfo.name} </h3>
+      <div> Supplier Code: {supplierInfo.supplierCode} </div>
+      <div> Phone: {supplierInfo.phone} </div>
+      <div> Email: {supplierInfo.email} </div>
+      <div> Website: {supplierInfo.website} </div>
       <div>
         Address:
-        <div> {currentSupplier.address1} </div>
-        <div> {currentSupplier.city}, {currentSupplier.state} {currentSupplier.zip} </div>
+        <div> {supplierInfo.address1} </div>
+        <div> {supplierInfo.city}, {supplierInfo.state} {supplierInfo.zip} </div>
       </div>
     </div>
 

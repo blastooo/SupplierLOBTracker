@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 
+import MainHeader from './components/MainHeader.jsx'
 import SupplierHeader from './components/SupplierHeader.jsx'
 
 class App extends React.Component {
@@ -9,7 +10,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       supplierList: null,
-      currentSupplierId: null,
+      supplierId: null,
+      supplierInfo: null,
       contracts: null
     };
   };
@@ -27,11 +29,12 @@ class App extends React.Component {
     });
   };
 
-  // Handle event when user selects a Supplier from the initial drop down list
+  // Handle event when user selects a Supplier from the drop down list
   changeSupplier(event) {
     event.preventDefault();
     this.setState({
-      currentSupplierId: event.target.value
+      supplierId: event.target.value,
+      supplierInfo: this.state.supplierList[event.target.value - 1]
     });
   };
 
@@ -43,19 +46,9 @@ class App extends React.Component {
       :
         <div>
 
-          <h1> Supplier Line of Balance </h1>
+          <MainHeader suppliers={this.state.supplierList} changeSupplier={this.changeSupplier.bind(this)} />
 
-          <section>
-            <label> Choose Supplier: </label>
-            <select onChange={this.changeSupplier.bind(this)} >
-              <option> Select </option>
-              {this.state.supplierList.map(supplier =>
-                <option key={supplier.id} value={supplier.id}> {supplier.supplierCode + ' ' + supplier.name} </option>
-              )}
-            </select>
-          </section>
-
-          <SupplierHeader currentSupplier={this.state.supplierList[this.state.currentSupplierId - 1]} />
+          <SupplierHeader supplierInfo={this.state.supplierInfo} />
 
         </div>
     );
