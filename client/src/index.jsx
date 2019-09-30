@@ -27,6 +27,14 @@ class App extends React.Component {
     });
   };
 
+  // Handle event when user selects a Supplier from the initial drop down list
+  changeSupplier(event) {
+    event.preventDefault();
+    this.setState({
+      currentSupplierId: event.target.value
+    });
+  };
+
   render() {
     return (
       this.state.supplierList === null ?
@@ -37,7 +45,7 @@ class App extends React.Component {
           <h1> Supplier Line of Balance </h1>
           <section>
             <label> Choose Supplier: </label>
-            <select>
+            <select onChange={this.changeSupplier.bind(this)} >
               <option> Select </option>
               {this.state.supplierList.map(supplier =>
                 <option key={supplier.id} value={supplier.id}> {supplier.supplierCode + ' ' + supplier.name} </option>
