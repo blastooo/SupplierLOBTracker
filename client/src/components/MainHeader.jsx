@@ -1,14 +1,14 @@
 import React from 'react';
 
-const MainHeader = (props) =>
+const MainHeader = ({supplierList, changeSupplier}) =>
   <div>
 
     <h1> Supplier Line of Balance </h1>
 
     <label> Choose Supplier: </label>
-    <select onChange={props.changeSupplier} >
+    <select onChange={changeSupplier} >
       <option> Select </option>
-      {props.suppliers.map(supplier =>
+      {supplierList.map(supplier =>
         <option key={supplier.id} value={supplier.id}> {supplier.supplierCode + ' ' + supplier.name} </option>
       )}
     </select>

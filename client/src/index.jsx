@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 
-import MainHeader from './components/MainHeader.jsx'
-import SupplierHeader from './components/SupplierHeader.jsx'
+import MainHeader from './components/MainHeader.jsx';
+import SupplierHeader from './components/SupplierHeader.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -46,7 +46,7 @@ class App extends React.Component {
       :
         <div>
 
-          <MainHeader suppliers={this.state.supplierList} changeSupplier={this.changeSupplier.bind(this)} />
+          <MainHeader supplierList={this.state.supplierList} changeSupplier={this.changeSupplier.bind(this)} />
 
           <SupplierHeader supplierInfo={this.state.supplierInfo} />
 
