@@ -1,12 +1,11 @@
 const db = require('./index.js');
-// const moment = require('moment');
 
 // Functions to get records
-const getSupplier = (supplierId, callback) => {
-  const sql = 'SELECT * FROM suppliers WHERE id = ?';
+const getSuppliers = (callback) => {
+  const sql = 'SELECT * FROM suppliers';
 
-  db.connection.query(sql, supplierId, function (err, result) {
-    callback(err, result[0]);
+  db.connection.query(sql, function (err, result) {
+    callback(err, result);
   });
 };
 
@@ -85,7 +84,7 @@ const addDemand = (demandData, callback) => {
 };
 
 module.exports = {
-  getSupplier: getSupplier,
+  getSuppliers: getSuppliers,
   getContracts: getContracts,
   getInventory: getInventory,
   getWIP: getWIP,

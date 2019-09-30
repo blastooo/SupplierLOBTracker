@@ -12,16 +12,15 @@ if (process.env.DATABASE === 'mongo') {
   console.log('No database defined in .env file');
 }
 
-// GET request to retrieve Supplier info
-router.route('/supplier/:id')
+// GET request to retrieve all Supplier info
+router.route('/supplier')
   .get((req, res) => {
-    const supplierId = req.params.id;
 
-    db.getSupplier(supplierId, (err, result) => {
+    db.getSuppliers((err, result) => {
       if (err) {
         console.log('Error', err);
       } else {
-        console.log('Supplier returned', result);
+        console.log('Suppliers returned', result);
         res.send(result);
       }
     });
