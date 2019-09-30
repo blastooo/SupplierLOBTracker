@@ -2,47 +2,48 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 
+import SupplierHeader from './components/SupplierHeader.jsx'
+
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      supplier: null,
+      supplierList: null,
+      currentSupplierId: null,
       contracts: null
     };
-    this.supplierId = 1;
   };
 
   componentDidMount() {
-    this.getSupplier();
-    this.getContracts();
+    this.getSupplierList();
   };
 
-  // GET request to retrieve Supplier info
-  getSupplier() {
-    $.get('/lob/supplier/' + this.supplierId, (supplierInfo) => {
+  // GET request to retrieve list of Suppliers
+  getSupplierList() {
+    $.get('/lob/supplier', (supplierData) => {
       this.setState({
-        supplier: supplierInfo
-      });
-    });
-  };
-
-  // GET request to retrieve Contracts data
-  getContracts() {
-    $.get('/lob/supplier/' + this.supplierId + '/contracts', (contractsData) => {
-      this.setState({
-        contracts: contractsData
+        supplierList: supplierData
       });
     });
   };
 
   render() {
     return (
-      (this.state.supplier === null || this.state.contracts === null) ?
+      this.state.supplierList === null ?
         // Display loading screen upon initial render
         <img src="https://i.imgur.com/k9GyXLC.gif" />
       :
         <div>
-          Line of Balance
+          <h1> Supplier Line of Balance </h1>
+          <section>
+            <label> Choose Supplier: </label>
+            <select>
+              <option> Select </option>
+              {this.state.supplierList.map(supplier =>
+                <option key={supplier.id} value={supplier.id}> {supplier.supplierCode + ' ' + supplier.name} </option>
+              )}
+            </select>
+          </section>
         </div>
     );
   };
