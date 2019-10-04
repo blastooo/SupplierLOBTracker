@@ -1,4 +1,5 @@
 const faker = require('faker/locale/en_US');
+const moment = require('moment');
 
 // Options for mock data counts
 const supplierCount = 0;
@@ -172,14 +173,18 @@ for (let i = 0; i < contracts.length; i++) {
 const demand = [];
 
 for (let i = 0; i < contracts.length; i++) {
+  let qty = Math.floor(Math.random() * 5) + 1;
+  let date = moment().subtract(Math.floor(Math.random() * 4) + 1, 'weeks').format('YYYY-MM-DD');
   for (let j = 300; j <= 330; j++) {
     demand.push(
       {
         partNumber: contracts[i].partNumber,
         lineNumber: j,
-        qty: Math.floor(Math.random() * 5) + 1
+        needDate: date,
+        qty: qty
       }
     );
+    date = moment(date).add(3, 'days').format('YYYY-MM-DD');
   }
 }
 

@@ -1,5 +1,5 @@
 /*  Execute this file from the command line by typing:
- *    mysql -u root -p < database-mysql/pure-sql/schema.sql
+ *    mysql -u root -p < database/schema.sql
  *  to create the database and the tables.*/
 
 DROP DATABASE IF EXISTS lob;
@@ -62,6 +62,7 @@ CREATE TABLE demand (
   id int NOT NULL AUTO_INCREMENT,
   partNumber varchar(50) NOT NULL,
   lineNumber int NOT NULL,
+  needDate datetime NOT NULL,
   qty int NOT NULL,
   PRIMARY KEY (id)
 )ENGINE=INNODB;

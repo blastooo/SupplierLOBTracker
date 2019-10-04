@@ -76,9 +76,9 @@ const addWIP = (wipData, callback) => {
 };
 
 const addDemand = (demandData, callback) => {
-  const sql = 'INSERT INTO demand (partNumber, lineNumber, qty) VALUES (?, ?, ?)';
+  const sql = 'INSERT INTO demand (partNumber, lineNumber, needDate, qty) VALUES (?, ?, ?, ?)';
 
-  db.connection.query(sql, [demandData.partNumber, demandData.lineNumber, demandData.qty], function (err, result) {
+  db.connection.query(sql, [demandData.partNumber, demandData.lineNumber, demandData.needDate, demandData.qty], function (err, result) {
     callback(err, result);
   });
 };
