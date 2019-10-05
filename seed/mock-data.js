@@ -4,6 +4,7 @@ const moment = require('moment');
 // Options for mock data counts
 const supplierCount = 0;
 const contractCount = 250;
+const demandCount = 30;
 
 // Create mock Suppliers data
 const suppliers = [];
@@ -173,17 +174,22 @@ for (let i = 0; i < contracts.length; i++) {
 const demand = [];
 
 for (let i = 0; i < contracts.length; i++) {
-  let qty = Math.floor(Math.random() * 5) + 1;
+  let lineQty = Math.floor(Math.random() * 5) + 1;
   let date = moment().subtract(Math.floor(Math.random() * 4) + 1, 'weeks').format('YYYY-MM-DD');
-  for (let j = 300; j <= 330; j++) {
+  let noDemand = Math.floor(Math.random() * 7);
+  for (let j = 0; j <= demandCount; j++) {
+    if (j < noDemand) {
+      qty = 0;
+    };
     demand.push(
       {
         partNumber: contracts[i].partNumber,
-        lineNumber: j,
+        lineNumber: j + 300,
         needDate: date,
         qty: qty
       }
     );
+    qty = lineQty;
     date = moment(date).add(3, 'days').format('YYYY-MM-DD');
   }
 }
