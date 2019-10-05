@@ -57,7 +57,7 @@ class App extends React.Component {
       :
         <div>
 
-          <MainHeader supplierList={this.state.supplierList} changeSupplier={this.changeSupplier.bind(this)} />
+          <MainHeader supplierList={this.state.supplierList} changeSupplier={this.changeSupplier.bind(this)} supplierId={this.state.supplierId} />
 
           <SupplierHeader supplierInfo={this.state.supplierInfo} />
 
