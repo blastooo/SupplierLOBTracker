@@ -2,6 +2,8 @@ import React from 'react';
 import moment from 'moment';
 
 import DemandMatrixByLN from './DemandMatrixByLN.jsx';
+import DemandMatrixByWeek from './DemandMatrixByWeek.jsx';
+import DemandMatrixByMonth from './DemandMatrixByMonth.jsx';
 
 class LOB extends React.Component {
   constructor(props) {
@@ -43,12 +45,12 @@ class LOB extends React.Component {
           dateType = 'weeks';
           dateFormat = 'YYYY-MM-DD';
           headerLength = 28;
-          // demandMatrix = <DemandMatrixByWeek contracts={this.props.contracts} headers={demandHeader} />;
+          demandMatrix = <DemandMatrixByWeek contracts={this.props.contracts} headers={demandHeader} />;
         } else {
           dateType = 'months';
           dateFormat = 'YYYY-MM-01';
           headerLength = 16;
-          // demandMatrix = <DemandMatrixByMonth contracts={this.props.contracts} headers={demandHeader} />;
+          demandMatrix = <DemandMatrixByMonth contracts={this.props.contracts} headers={demandHeader} />;
         }
         start = this.props.contracts.reduce((min, contract) =>
           contract.demand[0].needDate < min ? contract.demand[0].needDate : min
