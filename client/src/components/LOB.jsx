@@ -10,11 +10,12 @@ const LOB = ({contracts}) => {
     for (let i = start; i <= start + 30; i++) {
       lineNumbers.push(i);
     }
-  };
+  }
 
   // Used for visualizing current date line
   let previousDateLine = null;
   let currentDateLine = null;
+
 
   return (
     !!contracts &&
@@ -27,6 +28,7 @@ const LOB = ({contracts}) => {
           <thead>
             <tr>
               <th rowSpan="2"> No </th>
+              <th rowSpan="2"> Risk </th>
               <th rowSpan="2"> Part Number </th>
               <th rowSpan="2"> Nomenclature </th>
               <th rowSpan="2"> WIP </th>
@@ -42,7 +44,15 @@ const LOB = ({contracts}) => {
 
           <tbody>
             {contracts.map((contract, index) => {
-
+              let riskStoplight = {
+                'position': 'relative',
+                'height': 'auto%',
+                'width': '80%',
+                'margin': 'auto',
+                'paddingTop': '80%',
+                'backgroundColor': 'lime',
+                'borderRadius': '50%'
+              };
               let cummDemand = 0;
               let borderToggle = false;
               previousDateLine = currentDateLine;
@@ -51,6 +61,9 @@ const LOB = ({contracts}) => {
                 <tr key={contract.id}>
 
                   <td> {index + 1} </td>
+                  <td>
+                    <div style={riskStoplight} />
+                  </td>
                   <td> {contract.partNumber} </td>
                   <td> {contract.nomenclature} </td>
                   <td> {contract.WIP} </td>
@@ -58,28 +71,41 @@ const LOB = ({contracts}) => {
 
                   {contract.demand.map(line => {
                     // Red border coloring to show current date line
-                    let borderLeft = 'thin solid black';
-                    let borderTop = 'thin solid black';
+                    let borderLeftWidth = 'thin';
+                    let borderTopWidth = 'thin';
                     if (!borderToggle && moment(line.needDate).format('YYYY-MM-DD') >= moment().format('YYYY-MM-DD')) {
-                      borderLeft = '4px solid red';
+                      borderLeftWidth = 'medium';
                       borderToggle = true;
                       currentDateLine = line.lineNumber;
                     }
                     if (index !== 0 && !borderToggle && line.lineNumber >= previousDateLine) {
-                      borderTop = '4px solid red';
+                      borderTopWidth = 'medium';
                     } else if (index !== 0 && borderToggle && line.lineNumber < previousDateLine) {
-                      borderTop = '4px solid red';
+                      borderTopWidth = 'medium';
                     }
 
-                    // Green background color for demand that has inventory & yellow background color for demand that has WIP
+                    // Green background for demand that has inventory, yellow background for demand that has WIP
                     cummDemand += line.qty;
-                    if (contract.inventory >= cummDemand) {
-                      return <td key={line.id} style={{'backgroundColor': '#00FF00', 'borderLeft': borderLeft, 'borderTop': borderTop}}> {line.qty} </td>
+                    let backgroundColor = 'white';
+                    if (line.qty === 0) {
+                      backgroundColor = 'darkgray';
+                      line.qty = '';
+                    } else if (contract.inventory >= cummDemand) {
+                      backgroundColor = 'lime';
                     } else if (contract.inventory + contract.WIP >= cummDemand) {
-                      return <td key={line.id} style={{'backgroundColor': '#FFFF00', 'borderLeft': borderLeft, 'borderTop': borderTop}}> {line.qty} </td>
-                    } else {
-                      return <td key={line.id} style={{'borderLeft': borderLeft, 'borderTop': borderTop}}> {line.qty} </td>
+                      // Orange background for past due demand that has WIP
+                      if (moment(line.needDate).format('YYYY-MM-DD') < moment().format('YYYY-MM-DD')) {
+                        backgroundColor = 'orange';
+                        riskStoplight.backgroundColor = 'orange';
+                      } else {
+                        backgroundColor = 'yellow';
+                      }
+                    } else if (moment(line.needDate).format('YYYY-MM-DD') < moment().format('YYYY-MM-DD')) {
+                      // Orange background for past due demand that has WIP
+                      backgroundColor = 'red';
+                      riskStoplight.backgroundColor = 'red';
                     }
+                    return <td key={line.id} style={{'backgroundColor': backgroundColor, 'borderLeftWidth': borderLeftWidth, 'borderTopWidth': borderTopWidth}}> {line.qty} </td>
                   })}
 
                 </tr>
