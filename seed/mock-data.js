@@ -4,7 +4,7 @@ const moment = require('moment');
 // Options for mock data counts
 const supplierCount = 0;
 const contractCount = 250;
-const demandCount = 30;
+const demandCount = 50;
 
 // Create mock Suppliers data
 const suppliers = [];
@@ -27,11 +27,11 @@ suppliers.push(
 
 suppliers.push(
   {
-    name: 'Superstar Manufacturing',
+    name: 'Fly Me to the Moon Inc',
     supplierCode: Math.floor(Math.random() * 1000000) + 1,
     phone: faker.phone.phoneNumber(),
-    email: 'contactus@superstarmanufacturing.com',
-    website: 'http://www.superstarmanufacturing.com',
+    email: 'contactus@flymetothemoon.com',
+    website: 'http://www.flymetothemoon.com',
     address1: faker.address.streetAddress(),
     address2: faker.address.secondaryAddress(),
     city: faker.address.city(),
@@ -178,9 +178,7 @@ for (let i = 0; i < contracts.length; i++) {
   let date = moment().subtract(Math.floor(Math.random() * 4) + 1, 'weeks').format('YYYY-MM-DD');
   let noDemand = Math.floor(Math.random() * 7);
   for (let j = 0; j <= demandCount; j++) {
-    if (j < noDemand) {
-      qty = 0;
-    };
+    qty = j < noDemand ? 0 : lineQty;
     demand.push(
       {
         partNumber: contracts[i].partNumber,
