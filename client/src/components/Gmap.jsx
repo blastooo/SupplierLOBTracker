@@ -2,8 +2,8 @@ import React from 'react';
 import { getGoogleMaps } from '../../helpers/gmaps-api.js';
 
 class Gmap extends React.Component {
-  constructor({address}) {
-    super({address});
+  constructor(props) {
+    super(props);
   };
 
   componentDidUpdate(prevProps, prevState) {
