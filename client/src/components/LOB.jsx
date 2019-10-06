@@ -28,6 +28,7 @@ class LOB extends React.Component {
     let dateType = null;
     let dateFormat = null;
     let demandMatrix = null;
+    let tableWidth = '100em';
     let topHeader = [];
     let headerLength = null;
     let index = -1;
@@ -42,6 +43,7 @@ class LOB extends React.Component {
         demandMatrix = <DemandMatrixByLN contracts={this.props.contracts} headers={demandHeader} />;
       } else {
         if (this.state.demandType === 'Weekly') {
+          tableWidth = '110em';
           dateType = 'weeks';
           dateFormat = 'YYYY-MM-DD';
           headerLength = 28;
@@ -81,25 +83,25 @@ class LOB extends React.Component {
     }
 
     return (
-      !!this.props.contracts &&
-      <div>
 
-        <h3> Line of Balance </h3>
+      !!this.props.contracts &&
+
+      <div>
 
         <label><input type="radio" value="Line Number" checked={this.state.demandType === 'Line Number'} onChange={this.changeDemandType.bind(this)} /> Line Number </label>
         <label><input type="radio" value="Weekly" checked={this.state.demandType === 'Weekly'} onChange={this.changeDemandType.bind(this)} /> Weekly </label>
         <label><input type="radio" value="Monthly" checked={this.state.demandType === 'Monthly'} onChange={this.changeDemandType.bind(this)} /> Monthly </label>
 
-        <table>
+        <table style={{'tableLayout': 'fixed', 'width': tableWidth, 'margin': '0.4em 0'}}>
 
           <thead>
             <tr>
-              <th rowSpan="2"> No </th>
-              <th rowSpan="2"> Risk </th>
-              <th rowSpan="2"> Part Number </th>
-              <th rowSpan="2"> Nomenclature </th>
-              <th rowSpan="2"> WIP </th>
-              <th rowSpan="2"> Inventory </th>
+              <th rowSpan="2" style={{'width': '1.5em'}}> No </th>
+              <th rowSpan="2" style={{'width': '2.5em'}}> Risk </th>
+              <th rowSpan="2" style={{'width': '6.5em'}}> Part Number </th>
+              <th rowSpan="2" style={{'width': '6.5em'}}> Nomenclature </th>
+              <th rowSpan="2" style={{'width': '2.5em'}}> WIP </th>
+              <th rowSpan="2" style={{'width': '4.5em'}}> Inventory </th>
               {topHeader.map((val, index) =>
                 <th key={index} colSpan={val[Object.keys(val)[0]]}> {Object.keys(val)[0]} </th>
               )}
