@@ -4,24 +4,24 @@ const moment = require('moment');
 // Options for mock data counts
 const supplierCount = 0;
 const contractCount = 250;
-const demandCount = 50;
+const demandCount = 160;
 
 // Create mock Suppliers data
 const suppliers = [];
 
-// Create 1 unique Supplier (for demo purposes)
+// Create 5 unique Suppliers (for demo purposes)
 suppliers.push(
   {
-    name: 'Blue Origin',
-    supplierCode: 451339,
-    phone: '(253)872-0411',
-    email: 'contactus@blueorigin.com',
-    website: 'http://www.blueorigin.com',
-    address1: '21218 76th Ave S',
+    name: 'Spaceships R Us',
+    supplierCode: Math.floor(Math.random() * 1000000) + 1,
+    phone: faker.phone.phoneNumber(),
+    email: 'contactus@spaceshipsrus.com',
+    website: 'http://www.spaceshipsrus.com',
+    address1: 'N 6th St',
     address2: null,
-    city: 'Kent',
+    city: 'Renton',
     state: 'WA',
-    zip: '98032'
+    zip: '98057'
   }
 );
 
@@ -32,26 +32,26 @@ suppliers.push(
     phone: faker.phone.phoneNumber(),
     email: 'contactus@flymetothemoon.com',
     website: 'http://www.flymetothemoon.com',
-    address1: faker.address.streetAddress(),
-    address2: faker.address.secondaryAddress(),
-    city: faker.address.city(),
-    state: faker.address.state(),
-    zip: faker.address.zipCode()
+    address1: '33501 S Dixie Hwy',
+    address2: null,
+    city: 'Florida City',
+    state: 'FL',
+    zip: '33034'
   }
 );
 
 suppliers.push(
   {
-    name: 'Spaceships R Us',
-    supplierCode: Math.floor(Math.random() * 1000000) + 1,
-    phone: faker.phone.phoneNumber(),
-    email: 'contactus@spaceshipsrus.com',
-    website: 'http://www.spaceshipsrus.com',
-    address1: faker.address.streetAddress(),
-    address2: faker.address.secondaryAddress(),
-    city: faker.address.city(),
-    state: faker.address.state(),
-    zip: faker.address.zipCode()
+    name: 'To Space or Bust',
+    supplierCode: 451339,
+    phone: '(253)872-0411',
+    email: 'contactus@tospaceorbust.com',
+    website: 'http://www.tospaceorbust.com',
+    address1: '1310 Texas Blvd N',
+    address2: null,
+    city: 'Weslaco',
+    state: 'TX',
+    zip: '78599'
   }
 );
 
@@ -62,11 +62,11 @@ suppliers.push(
     phone: faker.phone.phoneNumber(),
     email: 'contactus@spacetechengineering.com',
     website: 'http://www.spacetechengineering.com',
-    address1: faker.address.streetAddress(),
-    address2: faker.address.secondaryAddress(),
-    city: faker.address.city(),
-    state: faker.address.state(),
-    zip: faker.address.zipCode()
+    address1: '4460 Bay Rd',
+    address2: null,
+    city: 'Saginaw',
+    state: 'MI',
+    zip: '48603'
   }
 );
 
@@ -77,11 +77,11 @@ suppliers.push(
     phone: faker.phone.phoneNumber(),
     email: 'contactus@worldspacecorp.com',
     website: 'http://www.worldspacecorp.com',
-    address1: faker.address.streetAddress(),
-    address2: faker.address.secondaryAddress(),
-    city: faker.address.city(),
-    state: faker.address.state(),
-    zip: faker.address.zipCode()
+    address1: '1547 Gateway Blvd',
+    address2: null,
+    city: 'Fairfield',
+    state: 'CA',
+    zip: '94533'
   }
 );
 
