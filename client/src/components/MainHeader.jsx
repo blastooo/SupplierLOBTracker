@@ -3,7 +3,7 @@ import React from 'react';
 const MainHeader = ({supplierList, changeSupplier, supplierId}) =>
   <div>
 
-    <h1> Supplier Line of Balance </h1>
+    <h1> Supplier Line of Balance Tracker </h1>
 
     <label> Choose Supplier: </label>
     <select onChange={changeSupplier} >

@@ -86,7 +86,7 @@ class LOB extends React.Component {
 
       !!this.props.contracts &&
 
-      <div>
+      <div style={{'clear': 'both', 'paddingTop': '2em'}}>
 
         <label><input type="radio" value="Line Number" checked={this.state.demandType === 'Line Number'} onChange={this.changeDemandType.bind(this)} /> Line Number </label>
         <label><input type="radio" value="Weekly" checked={this.state.demandType === 'Weekly'} onChange={this.changeDemandType.bind(this)} /> Weekly </label>
