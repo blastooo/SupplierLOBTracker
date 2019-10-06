@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 
+import Legend from './Legend.jsx';
 import DemandMatrixByLN from './DemandMatrixByLN.jsx';
 import DemandMatrixByWeek from './DemandMatrixByWeek.jsx';
 import DemandMatrixByMonth from './DemandMatrixByMonth.jsx';
@@ -88,11 +89,15 @@ class LOB extends React.Component {
 
       <div style={{'clear': 'both', 'paddingTop': '2em'}}>
 
-        <label><input type="radio" value="Line Number" checked={this.state.demandType === 'Line Number'} onChange={this.changeDemandType.bind(this)} /> Line Number </label>
-        <label><input type="radio" value="Weekly" checked={this.state.demandType === 'Weekly'} onChange={this.changeDemandType.bind(this)} /> Weekly </label>
-        <label><input type="radio" value="Monthly" checked={this.state.demandType === 'Monthly'} onChange={this.changeDemandType.bind(this)} /> Monthly </label>
+        <Legend />
 
-        <table style={{'tableLayout': 'fixed', 'width': tableWidth, 'margin': '0.4em 0'}}>
+        <div style={{'margin': '1em 0 0.4em 0', 'fontSize': '1.05em'}}>
+          <label><input type="radio" value="Line Number" checked={this.state.demandType === 'Line Number'} onChange={this.changeDemandType.bind(this)} /> Line Number </label>
+          <label><input type="radio" value="Weekly" checked={this.state.demandType === 'Weekly'} onChange={this.changeDemandType.bind(this)} /> Weekly </label>
+          <label><input type="radio" value="Monthly" checked={this.state.demandType === 'Monthly'} onChange={this.changeDemandType.bind(this)} /> Monthly </label>
+        </div>
+
+        <table style={{'tableLayout': 'fixed', 'width': tableWidth}}>
 
           <thead>
             <tr>
