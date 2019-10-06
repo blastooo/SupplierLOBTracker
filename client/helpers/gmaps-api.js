@@ -5,7 +5,8 @@ var getGoogleMaps = function(address) {
   // Create map object centered at initial location
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 10,
-    center: initLocation
+    center: initLocation,
+    disableDefaultUI: true
   });
 
   var request = {
