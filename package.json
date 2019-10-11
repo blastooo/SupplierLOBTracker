@@ -1,16 +1,16 @@
 {
-  "name": "LineOfBalance",
-  "version": "1.0.0",
-  "description": "A Visibility Tool for Tracking Detailed Parts Status at Suppliers",
+  "name": "SupplierLOBTracker",
+  "version": "1.14",
+  "description": "A tool that integrates data from your company & supplier's Material Requirements Planning (MRP) systems, and displays it on a coherent visibility matrix. This allows for efficient tracking of parts status and streamlined identification/mitigation of risks. The tool also provides a standardized approach to managing multiple suppliers across the supply chain.",
   "author": "James Lee <https://github.com/blastooo>",
   "license": "ISC",
-  "homepage": "https://github.com/blastooo/LOB#readme",
+  "homepage": "https://github.com/blastooo/SupplierLOBTracker#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/blastooo/LOB.git"
+    "url": "git+https://github.com/blastooo/SupplierLOBTracker.git"
   },
   "bugs": {
-    "url": "https://github.com/blastooo/LOB/issues",
+    "url": "https://github.com/blastooo/SupplierLOBTracker/issues",
     "email": "james.k.lee4@gmail.com"
   },
   "main": "index.js",
