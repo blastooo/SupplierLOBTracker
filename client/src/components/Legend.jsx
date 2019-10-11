@@ -23,11 +23,11 @@ const Legend = () =>
       </tr>
       <tr>
         <td style={{'border': 'none', 'width': '1.2em', 'backgroundColor': '#FFFF69'}} />
-        <td style={{'padding': '0.3em', 'border': 'none', 'textAlign': 'left'}}> Behind Schedule with WIP </td>
+        <td style={{'padding': '0.3em', 'border': 'none', 'textAlign': 'left'}}> Behind Schedule WIP </td>
       </tr>
       <tr>
         <td style={{'border': 'none', 'width': '1.2em', 'backgroundColor': '#FF3939'}} />
-        <td style={{'padding': '0.3em', 'border': 'none', 'textAlign': 'left'}}> Behind Schedule with no WIP </td>
+        <td style={{'padding': '0.3em', 'border': 'none', 'textAlign': 'left'}}> No Coverage </td>
       </tr>
     </tbody>
   </table>
